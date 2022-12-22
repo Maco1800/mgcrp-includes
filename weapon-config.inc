@@ -5505,6 +5505,24 @@ static DamageFeedUpdateText(playerid)
 			format(
 				buf,
 				sizeof(buf),
+				"%s +%.2f~n~",
+				weapon,
+				s_DamageFeedHitsGiven[playerid][i][e_Amount] + 0.009
+			);
+		} else {
+			format(
+				buf,
+				sizeof(buf),
+				"%s +%.2f (%.2f)~n~",
+				weapon,
+				s_DamageFeedHitsGiven[playerid][i][e_Amount] + 0.009,
+				s_PlayerHealth[s_DamageFeedHitsGiven[playerid][i][e_Issuer]]
+			);
+		}
+		/*if (s_DamageFeedHitsGiven[playerid][i][e_Issuer] == INVALID_PLAYER_ID) {
+			format(
+				buf,
+				sizeof(buf),
 				"%s%s +%.2f~n~",
 				buf,
 				weapon,
@@ -5521,7 +5539,7 @@ static DamageFeedUpdateText(playerid)
 				s_DamageFeedHitsGiven[playerid][i][e_Amount] + 0.009,
 				s_PlayerHealth[s_DamageFeedHitsGiven[playerid][i][e_Issuer]]
 			);
-		}
+		}*/
 	}
 
 	if (s_DamageFeedGiven[playerid] == PlayerText:INVALID_TEXT_DRAW) {
@@ -5548,7 +5566,7 @@ static DamageFeedUpdateText(playerid)
 			WC_GetWeaponName(s_DamageFeedHitsTaken[playerid][i][e_Weapon], weapon);
 		}
 
-		if (s_DamageFeedHitsTaken[playerid][i][e_Issuer] == INVALID_PLAYER_ID) {
+		/*if (s_DamageFeedHitsTaken[playerid][i][e_Issuer] == INVALID_PLAYER_ID) {
 			format(
 				buf,
 				sizeof(buf),
@@ -5565,6 +5583,25 @@ static DamageFeedUpdateText(playerid)
 				"%s%s - %s -%.2f (%.2f)~n~",
 				buf,
 				s_DamageFeedHitsTaken[playerid][i][e_Name],
+				weapon,
+				s_DamageFeedHitsTaken[playerid][i][e_Amount] + 0.009,
+				s_PlayerHealth[s_DamageFeedHitsGiven[playerid][i][e_Issuer]]
+			);
+		}*/
+		if (s_DamageFeedHitsTaken[playerid][i][e_Issuer] == INVALID_PLAYER_ID) {
+			format(
+				buf,
+				sizeof(buf),
+				"%s -%.2f (%.2f)~n~",
+				weapon,
+				s_DamageFeedHitsTaken[playerid][i][e_Amount] + 0.009,
+				s_PlayerHealth[playerid]
+			);
+		} else {
+			format(
+				buf,
+				sizeof(buf),
+				"%s -%.2f (%.2f)~n~",
 				weapon,
 				s_DamageFeedHitsTaken[playerid][i][e_Amount] + 0.009,
 				s_PlayerHealth[s_DamageFeedHitsGiven[playerid][i][e_Issuer]]
